@@ -55,35 +55,29 @@ void imprimirMatriz(char **tabuleiro, int N)
 int main()
 {
     int N;
-
     printf("Insira o tamanho do tabuleiro: ");
     scanf("%d", &N);
-
+    // Atribuir memória
     char **tabuleiro = (char **)malloc(N * sizeof(char *));
 
-    for (int i = 0; i < N; i++)
-    {
+    for (int i = 0; i < N; i++) {
         tabuleiro[i] = (char *)malloc(N * sizeof(char));
     }
-
     // Preencher com .
-    for (int i = 0; i < N; i++)
-    {
+    for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++)
         {
             tabuleiro[i][j] = '.';
         }
     }
-
-    if (colocarRainhas(tabuleiro, N, 0))
-    {
+    // Buscar solução
+    if (colocarRainhas(tabuleiro, N, 0)) {
         imprimirMatriz(tabuleiro, N);
     } else {
         printf("Não encontrou solução");
     }
-
-    for (int i = 0; i < N; i++)
-    {
+    // Liberar memória
+    for (int i = 0; i < N; i++) {
         free(tabuleiro[i]);
     }
     free(tabuleiro);
